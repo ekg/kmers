@@ -9,7 +9,7 @@ int main (int argc, char** argv) {
 
     if (argc != 3) {
 	cerr << "usage: " << argv[0] << " [kmermin] [kmermax]" << endl
-	     << "Generate kmer frequency statistics for all kmers in stdin for kmers between" << endl
+	     << "Generate kmer frequency statistics for all kmers in stdin between" << endl
 	     << "kmermin and kmermax size." << endl;
 	return 1;
     }

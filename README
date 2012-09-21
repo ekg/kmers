@@ -6,7 +6,7 @@ author: Erik Garrison <erik.garrison@bc.edu>
 license: MIT
 
 usage: ./kmers [kmermin] [kmermax]
-Generate kmer frequency statistics for all kmers in stdin for kmers between
+Generate kmer frequency statistics for all kmers in stdin between
 kmermin and kmermax size.
 
 

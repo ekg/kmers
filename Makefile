@@ -4,7 +4,7 @@ CFLAGS=-Wall -O3
 all: kmers
 
 clean:
-	rm *.o
+	rm kmers
 
 .PHONY: all clean
 
