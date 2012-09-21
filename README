@@ -1,0 +1,41 @@
+kmers --- generate kmer frequency tables from text streams
+
+
+author: Erik Garrison <erik.garrison@bc.edu>
+
+license: MIT
+
+usage: ./kmers [kmermin] [kmermax]
+Generate kmer frequency statistics for all kmers in stdin for kmers between
+kmermin and kmermax size.
+
+
+overview:
+
+We could generate statistics for all 4-mers in the string ATGCATGC using the
+following invocation.
+
+% echo ATGCATGC | tr -d '\n' | ./kmers 4 4
+kmer    count   freq    lfreq
+ATGC    2       0.4	    -0.39794
+CATG    1       0.2	    -0.69897
+GCAT    1       0.2	    -0.69897
+TGCA    1       0.2	    -0.69897
+
+Here count is the number of occurances, freq is the frequency of the kmer out
+of all possible kmers in the input of that length (e.g. here there are 5
+possible kmers of length 4 in a string of 8 characters), and lfreq is
+log10(freq).
+
+This program can be used to generate kmer frequency information for standard
+FASTA reference files as follows:
+
+% cat reference.fasta \
+    | sed "/^>.*$/d" \  # delete sequence names
+    | tr -d '\n' \      # remove newlines
+    | ./kmers 1 11 \    # generate kmer frequency information from 1bp to 11bp
+    | grep -v N \       # remove kmers containing "N"s
+    >reference.kmers.tsv
+
+Note that memory usage could be extremely high with longer kmers, in the order
+of kmer length * input size for each kmer length between kmermin and kmermax.
